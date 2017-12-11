@@ -1,0 +1,17 @@
+{
+  "name": "hangmanjs",
+  "version": "1.0.0",
+  "description": "Advance Javascript for Hangman Functionality",
+  "main": "hangmanjs.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gel D.",
+  "license": "ISC",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "inquire": "^0.4.8",
+    "inquirer": "^4.0.1"
+  },
+  "devDependencies": {}
+}
