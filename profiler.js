@@ -3,7 +3,7 @@ var inquirer = require('inquirer');
 var PlayFunc = require('./PlayFunc');
 
 
-var Player = function (name) {
+var Player = function(name) {
 	this.name = name;
 }
 var profiler = function() {
@@ -22,7 +22,7 @@ var profiler = function() {
          	name: "Go make history!"
          }, 
          {
-         	name: "Gotta take of, C'ya later!"
+         	name: "try again next time!"
          }
          ],
  }
@@ -31,11 +31,11 @@ var profiler = function() {
     var userName = answer.name + " is Gonna " + answer.welcome;
     console.log(userName);
     if(answer.welcome == "Go make history!"){
-      yyy = new PlayFunc();
-      yyy.getData();
+      PlayFunc = new PlayFunc();
+      PlayFunc.getData();
     }
     else {
-      console.log("until next time...");
+      //do nothing
     }
     fs.appendFile("log.txt", "Player Name: " + userName + "\n", function (err) {
         if (err) throw err; 

@@ -1,69 +1,48 @@
 var fs = require('fs');
+var checkGuess = require('./checkGuess');
 
 
 var PlayFunc = function() {
+		var blanksArr = [];
+		var currentWord = [];
 		//reads the guessing word but
 		//display each letter for an underscore 
 	this.getData = function() {
+		var stackOv = "";
 	    fs.readFile("words.txt", "utf8", function(error, data){
 	    	if (error) throw error;
-	      	//parse data 
-	      	var guessArr = [];
 
+	      	//data - array
 	      	var wordArr = data.split(',');
+	      	//select random from word from data
 	      	var compWord = wordArr[Math.floor(Math.random() * wordArr.length)].toLowerCase();//random
-	      	console.log("GUESS: " + compWord);
-	      	var currentWord = compWord.split('');
+	      	//selected word in array - currentWord
+	      	currentWord = compWord.split('');
+	      	console.log("========================\n\n\n");
 
 	      	//CHECKING FOR DASHES OR SPACES AND PASSING THEM ON
-	      	var space = currentWord.indexOf(" ");
 	      	// console.log("space " + space);
-	      	console.log(compWord + "\n===========DASHES============");
-	      	for (var i = 0; i < currentWord.length; i++) {
-	      		a = currentWord[i];
-	      		// console.log(a.indexOf(" "));
-	      		console.log(a.indexOf("-"));
-	      	}
-	      	console.log(compWord + "\n===========SPACES============");
-	      	for (var i = 0; i < currentWord.length; i++) {
-	      		a = currentWord[i];
-	      		console.log(a.indexOf(" "));
-	      	}
-	      	// var dash = currentWord.indexOf("-");
-	      	// // console.log("dash " + dash);
-	      	// if (dash == -1) {
-	      	// 	console.log("NO DASH");
-	      		
-	      	// }
-	      	// if (space == -1){
-	      	// 	console.log("NO SPACE");
-	      		
-	      	// }
-	      	// if (dash > -1) {
-	      	// 	console.log("THERES A DASH!");
-	      	// 	guessArr.splice(dash,1,"-");
-	      	// 	console.log(dash);
-	      	// }
-	      	// if (space > -1) {
-	      	// 	console.log("THERES A SPACE!");
-	      	// 	guessArr.splice(space,1," ");
-	      	// 	console.log(space);
-	      	// }
-	      
-	      	// for (var i = 0; i < currentWord.length; i++) {
-	      	// guessArr.push("_");
-				
-
-	      	// }
-	      	// console.log(guessArr.join(' '));//blanks of the chosen random word
-	      	var wordToGuess = guessArr.join(' ');
-	      	console.log(wordToGuess);
+	      	
+	      	for (var i = 0; i <= currentWord.length - 1; i++) {
+	      		// console.log(i);
+	      		// pushing blanks and display it
+	      		var gArr = blanksArr.push("_"); 
+	      		//so far we have blanks...
+	      	
+	      		//HYPHENS AND SPACES SHOULD BE PASSED IN
+	      		stackOv = currentWord.join("").replace(/[^- :'.]/g, "_");	
+	      	}	
+	      	console.log("GUESS THIS MOVIE: " + stackOv);
+	      	fs.writeFile("blanks.txt", stackOv, (err) => {
+	      	  if (err) throw err;
+	      	  console.log('The file has been saved!');
+	      	});
 	    });
 	}
-	this.getData();
+
 }
 
-PlayFunc();
+
 
 
 module.exports = PlayFunc;
