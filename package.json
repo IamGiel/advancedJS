@@ -11,7 +11,8 @@
   "dependencies": {
     "fs": "0.0.1-security",
     "inquire": "^0.4.8",
-    "inquirer": "^4.0.1"
+    "inquirer": "^4.0.1",
+    "prompt": "^1.0.0"
   },
   "devDependencies": {}
 }

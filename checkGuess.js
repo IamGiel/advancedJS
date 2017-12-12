@@ -1,17 +1,17 @@
 var fs = require('fs');
 var inquirer = require('inquirer');
 var PlayFunc = require('./PlayFunc');
+var prompt = require('prompt');
+var userGuess = process.argv[3];
 
 var checkGuess = function (){
-		var string = "";
-	this.guessWord = function() {
-		fs.readFile('blanks.txt', "utf8",(err, word) => {
-		  if (err) throw err;
-		  word.split('');
-		  string = word.split(' '); console.log("THIS IS STRING: " + string);
-		});
-	}
-	// this.guessWord();
+	// console.log("WORKING CONNECTED CHECKGUESS MODULE");
+	// PlayFunc = new PlayFunc();
+	// PlayFunc.getData();
+
+	console.log("PROGRESS: " + string.join(''));
+	
+
 }
 // checkGuess();
 

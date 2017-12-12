@@ -1,6 +1,7 @@
 var fs = require('fs');
 var inquirer = require('inquirer');
 var PlayFunc = require('./PlayFunc');
+// var checkGuess = require('./checkGuess');
 
 
 var Player = function(name) {
@@ -19,7 +20,7 @@ var profiler = function() {
      message: "Get Ready for some Hang-Man Action!",
      choices: [
          {
-         	name: "Go make history!"
+         	name: "go make history!"
          }, 
          {
          	name: "try again next time!"
@@ -28,9 +29,9 @@ var profiler = function() {
  }
   ]).then(function(answer) {
     var newPlayer = new Player(answer.name);
-    var userName = answer.name + " is Gonna " + answer.welcome;
+    var userName = answer.name + " is gonna " + answer.welcome;
     console.log(userName);
-    if(answer.welcome == "Go make history!"){
+    if(answer.welcome == "go make history!"){ 
       PlayFunc = new PlayFunc();
       PlayFunc.getData();
     }
@@ -39,7 +40,7 @@ var profiler = function() {
     }
     fs.appendFile("log.txt", "Player Name: " + userName + "\n", function (err) {
         if (err) throw err; 
-        console.log("--saved--");
+        console.log(answer.name + " your name's in the system, lets see how you do!");
       });
 	});  
 }
