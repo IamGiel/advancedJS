@@ -1,6 +1,6 @@
 var fs = require('fs');
 var inquirer = require('inquirer');
-var checkGuess = require('./checkGuess');
+var displayProgress = require('./checkGuess');
 
 // var checkGuess = require('./checkGuess');
 
@@ -13,45 +13,37 @@ var PlayFunc = function() {
 		var stackOv = "";
 	    fs.readFile("words.txt", "utf8", function(error, data){
 	    	if (error) throw error;
-
+	    	dataType = data.toLowerCase();
 	      	//data in array
-	      	var wordArr = data.split(',');
+	      	var wordArr = dataType.split(',');
 	      	//select random from word from data
-	      	var compWord = wordArr[Math.floor(Math.random() * wordArr.length-1)].toLowerCase();//random
+	      	var compWord = wordArr[Math.floor(Math.random() * wordArr.length)];//random
 	      	//split chosen word
 	      	currentWord = compWord.split('');
 	      	console.log("========================\n\n\n");
 
-	      	//CHECKING FOR DASHES OR SPACES AND PASSING THEM ON
-	      	// console.log("space " + space);
-	      	
+	      	//Looping through the word	      	
 	      	for (var i = 0; i <= currentWord.length - 1; i++) {
 	      		// pushing blanks 
 	      		var gArr = blanksArr.push("_"); 
-	      		//so far we have blanks...
 	      	
-	      		//HYPHENS AND SPACES SHOULD BE PASSED IN
-	      		stackOv = currentWord.join("").replace(/[^- :'.]/g, "_");	
+	      		//HYPHENS, COLONS, SPACES SHOULD BE PASSED
+	      		stackOv = currentWord.join("").replace(/[^- :'.]/g, "_");
+	      		wordString = currentWord.join("");	
 	      	}	
-	      	// console.log("GUESS THIS MOVIE: " + stackOv);
+	      	console.log("GUESS THIS MOVIE: ");
 	      	fs.writeFile("blanks.txt", stackOv, (err) => {
-	      	  if (err) throw err;
-	      	// console.log('The file has been saved!');
-	      	});
+				if (err) throw err;
+				console.log(wordString);
+				fs.readFile('blanks.txt', "utf8",(err, word) => {
+					if (err) throw err;
+					// console.log("GUESS THIS MOVIE: " + compWord);
+					blanksTxt = word.split(''); //console.log(string.join('').replace(/[^-: '.]/g, "_"));
 
-	      	fs.readFile('blanks.txt', "utf8",(err, word) => {
-	      	  if (err) throw err;
-	      	  word.split('');
-	      	  console.log("GUESS THIS MOVIE: " + compWord);
-	      	  string = word.split(''); //console.log(string.join('').replace(/[^-: '.]/g, "_"));
-
-	      	  checkGuess = new checkGuess();
-	      	  // checkGuess.guessWord(); 
-
-	      	  //check npmjs for inquire checking user input
-
-
-	      	});
+					displayProgress = new displayProgress();
+					displayProgress.checkGuess(); 
+		      	});
+	      	});      	
 	    });
 	}
 

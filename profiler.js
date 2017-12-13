@@ -15,7 +15,7 @@ var profiler = function() {
      message: "Add your name to the 'HALL OF FAME': "
     },
     {
-     type: "checkbox",
+     type: "list",
      name: "welcome",
      message: "Get Ready for some Hang-Man Action!",
      choices: [
@@ -29,7 +29,7 @@ var profiler = function() {
  }
   ]).then(function(answer) {
     var newPlayer = new Player(answer.name);
-    var userName = answer.name + " is gonna " + answer.welcome;
+    var userName = "\n\n\n========================\n" + answer.name + " is gonna " + answer.welcome;
     console.log(userName);
     if(answer.welcome == "go make history!"){ 
       PlayFunc = new PlayFunc();
@@ -40,7 +40,7 @@ var profiler = function() {
     }
     fs.appendFile("log.txt", "Player Name: " + userName + "\n", function (err) {
         if (err) throw err; 
-        console.log(answer.name + " your name's in the system, lets see how you do!");
+        // console.log(answer.name + " your name's in the system, lets see how you do!");
       });
 	});  
 }
