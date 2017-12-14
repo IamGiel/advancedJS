@@ -38,12 +38,12 @@ var PlayFunc = function() {
 	      	
 	      	fs.writeFile("blanks.txt", stackOv, (err) => {
 				if (err) throw err;
-				console.log("WRITING ON BLANKS.TXT");
+				// console.log("WRITING ON BLANKS.TXT");
 				
 				// fs.readFile('blanks.txt', "utf8",(err, data) => {
 				// 	if (err) throw err;
 					console.log("GUESS THIS MOVIE: " + stackOv);
-					console.log("READING FROM BLANKS.TXT");
+					// console.log("READING FROM BLANKS.TXT");
 					
 
 					displayProgress = new displayProgress();
