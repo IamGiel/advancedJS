@@ -2,9 +2,6 @@ var fs = require('fs');
 var inquirer = require('inquirer');
 var displayProgress = require('./checkGuess');
 
-// var checkGuess = require('./checkGuess');
-
-
 var PlayFunc = function() {
 		var blanksArr = [];
 		var currentWord = [];
@@ -31,31 +28,17 @@ var PlayFunc = function() {
 	      		//HYPHENS, COLONS, SPACES SHOULD BE PASSED
 	      		stackOv = currentWord.join("").replace(/[^- :'.,]/g, "_");
 	      		currentString = currentWord.join("");	
-	      	}	
-	  //     	fs.writeFile("emptyBlanks.txt", blanksArr, (err) => {
-			// 	if (err) throw err;
-			// });
+	      	}
 	      	
 	      	fs.writeFile("blanks.txt", stackOv, (err) => {
 				if (err) throw err;
-				// console.log("WRITING ON BLANKS.TXT");
-				
-				// fs.readFile('blanks.txt', "utf8",(err, data) => {
-				// 	if (err) throw err;
-					console.log("GUESS THIS MOVIE: " + stackOv);
-					// console.log("READING FROM BLANKS.TXT");
-					
-
-					displayProgress = new displayProgress();
-					displayProgress.checkGuess(); 
-		      	// });
+				console.log("GUESS THIS MOVIE: " + stackOv);
+				displayProgress = new displayProgress();
+				displayProgress.checkGuess(); 
 	      	});      	
 	    });
 	}
 
 }
-
-
-
 
 module.exports = PlayFunc;

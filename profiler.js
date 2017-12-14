@@ -20,10 +20,10 @@ var profiler = function() {
      message: "Get Ready for some Hang-Man Action!",
      choices: [
          {
-         	name: "go make history!"
+         	name: "GO, BREAK RECORDS!"
          }, 
          {
-         	name: "try again next time!"
+         	name: "TRY LATER..."
          }
          ],
  }
@@ -31,7 +31,7 @@ var profiler = function() {
     var newPlayer = new Player(answer.name);
     var userName = "\n\n\n========================\n" + answer.name + " is gonna " + answer.welcome;
     console.log(userName);
-    if(answer.welcome == "go make history!"){ 
+    if(answer.welcome == "GO, BREAK RECORDS!"){ 
       PlayFunc = new PlayFunc();
       PlayFunc.getData();
     }
