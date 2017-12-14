@@ -1,48 +1,104 @@
 var fs = require('fs');
 var inquirer = require('inquirer');
 var PlayFunc = require('./PlayFunc');
-var prompt = require('prompt');//maybe we wont need this (delete later)
+
 
 var displayProgress = function (){
-	// console.log("WORKING CONNECTED CHECKGUESS MODULE");
-	// PlayFunc = new PlayFunc();
-	// PlayFunc.getData();
 
 	
-	var a = blanksTxt.join('');//string a
-	var manipulateThisArray = blanksTxt;
-	console.log(a);	
-	// console.log(manipulateThisArray);
-	 
-
+		
 	 this.checkGuess = function(){
 		 inquirer.prompt([
 		   {
 		    type: "input",
 		    name: "letter",
-		    message: "Type a letter to guess, you have 10 TRIES:"
+		    message: "Type a letter to guess, you have 10 TRIES: "
 		   }
-		 
 		 ]).then(function(userInput) {
-		 	var correctArray = [];
-		 	// console.log(userInput.letter);
+		 	
 		 	letterTyped = userInput.letter;
-		 	//logic
-		 	//test if we can parse through the array
-		 	for (var i = 0; i <= manipulateThisArray.length - 1; i++) {
-		 		x = manipulateThisArray[i]; console.log(x);
-		 		// if userinput letter-value matches chosen words letter value 
-		 		// replace this chosen worsa letter with userinput value
-		 		// if(letterTyped == x.charAt(i)) {
-		 			console.log("THERES A MATCH " + x.charAt(i));
-		 		// }else {
-		 			// console.log("NO MATCH");
-		 		// }
-	      		    			
-	      	}
+		 	if (!userInput.letter) {
+		 	
+		 		tryAgain();
+		 		
+		 	}else {
+		 		//LOGIC FOR HANGMAN
+	 			// console.log("THIS IS USERINPUT:")
+ 				var replaceArray = [];
+ 				var correctLetters = [];
+ 				//READING BLANKS.TXT
+	 			fs.readFile('blanks.txt', "utf8",(err, data) => {
+	 					if (err) throw err;
+	 					//IMPORTANT DATA:
+
+	 				// console.log("GUESS THIS MOVIE: " + data);//array with blanks
+	 		 		// 	console.log("DISPLAY   ANSWER: " + currentString);//array with letters
+
+					underscores = data.split('');
+					//USE LOOP TO PUSH BLANKS AND REPLACE BLANKS WITH LETTERS
+					for (var i = 0; i < underscores.length; i++) {
+						
+						if (letterTyped === currentString[i]){
+						underscores.splice(i,1,letterTyped);
+						correctLetters.push(i);
+						}
+					}
+					
+					console.log("DISPLAY UR INPUT: " + underscores.join(''));
+					console.log("GUESSED  LETTERS: " + correctLetters.length);
+					fs.writeFile("blanks.txt", underscores, (err) => {
+						if (err) throw err;
+						
+					});
+
+					DisplayProgress = new displayProgress();
+					DisplayProgress.checkGuess();
+
+				});
+		 		 
+		 	}
 		 });
 	}
 }
-// checkGuess();
 
+	function tryAgain() {
+		inquirer.prompt([
+		  {
+		   type: "input",
+		   name: "letter",
+		   message: "NEED TO TYPE LETTER, or press 'ENTER' to END GAME"
+		  }
+		
+		]).then(function(userInput) {
+			var correctArray = [];
+			// console.log(userInput.letter);
+			letterTyped = userInput.letter;
+			console.log(blanksTxt);
+			if (!userInput.letter) {
+				console.log('goodbye');	
+			} else {
+				tryAgain();
+			}
+		});
+	}
+	//call this function for wrong letter
+	function tryAgain2() {
+		inquirer.prompt([
+		  {
+		   type: "input",
+		   name: "letter",
+		   message: "Type a letter to guess again:"
+		  }
+		
+		]).then(function(userInput) {
+			var correctArray = [];
+			// console.log(userInput.letter);
+			letterTyped = userInput.letter;
+			// console.log(blanksTxt);
+			if (userInput.letter) {
+				console.log('try again!');
+				
+			}
+		});
+	}
 module.exports = displayProgress;
