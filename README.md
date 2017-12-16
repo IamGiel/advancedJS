@@ -9,6 +9,15 @@ profiler.js - takes user info
 playFunc.js - gets data set from word bank
 checkGuess.js - hangman logic
 ````
+Packages I used:
+1. ``require FileSystem Package`` 
+
+- stored random word, dispayed selected word, displayed user progress.
+
+2 ``require Inquirer Package``  
+
+- stored user info, initializes game, re-starts game, ends game. 
+
 This app prompts the user to provide their information and an option to `play now` or`play later`.  See illustration of sample gameplay:
 
 
