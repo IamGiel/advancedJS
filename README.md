@@ -11,9 +11,15 @@ checkGuess.js - hangman logic
 ````
 This app prompts the user to provide their information and an option to `play now` or`play later`.  See illustration of sample gameplay:
 
-![Alt Image Text](path/or/url/to.jpg "Optional Title")
-![Alt Image Text](path/or/url/to.jpg "Optional Title")
-![Alt Image Text](path/or/url/to.jpg "Optional Title")
+
+This is the intro
+![Alt Image Text](https://raw.githubusercontent.com/IamGiel/advancedJS/master/images/profiler1.png)
+
+User Interface
+![Alt Image Text](https://raw.githubusercontent.com/IamGiel/advancedJS/master/images/profiler2.png)
+
+and other flares...
+![Alt Image Text](https://raw.githubusercontent.com/IamGiel/advancedJS/master/images/profiler3.png)
 
 ### Future plans for the app involves:
 1. Log-in for previous users/admin
