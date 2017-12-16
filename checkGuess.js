@@ -104,20 +104,11 @@ var displayProgress = function (){
 					if(bad == false){
 						console.log("KEEP GOING! :)");
 					}
-
 					// console.log("CURRENT STRING " + currentString);
 					console.log("GUESSES LEFT:=====> " + guessesLeft);
 					console.log("YOUR PROGRESS:====> " + underscores.join(''));
 					// console.log("CORRECT LETTERS:==> " + correctLetters.length);
 					console.log("LETTER HISTORY:===> " + lettersAlreadyTyped.join(','));
-					winner = underscores.join('').replace(/[^_]/g, "").length;
-						if (winner === 0) {
-							console.log("\n\n\n======================== ~~~~~~~~ YOU WIN!!! ~~~~~~~~ ========================");
-							//recursion
-							
-							var play = new Player();
-							play.profiler();
-						}
 					console.log("\n\n\n((((((((((((o))))))))))))((((((((((((o))))))))))))((((((((((((o))))))))))))\n");
 					//looping through history of letters typed
 					
@@ -130,11 +121,53 @@ var displayProgress = function (){
 					//recursion
 					DisplayProgress = new displayProgress();
 					DisplayProgress.checkGuess();
+					winner = underscores.join('').replace(/[^_]/g, "").length;
+						if (winner === 0) {
+							console.log("\n\n\n======================== ~~~~~~~~ YOU WIN!!! ~~~~~~~~ ========================");
+							restart();
+						}
 				}); 
 		 	}
 		});
 	}
 }
+	//re-intitialize the game
+	function restart(){
+		 	 
+		var blanksArr = [];
+		var currentWord = [];
+		var stackOv = "";
+	    fs.readFile("words.txt", "utf8", function(error, data){
+	    	if (error) throw error;
+	    	dataType = data.toLowerCase();
+	      	//data in array
+	      	var wordArr = dataType.split(',');
+	      	//select random from word from data
+	      	var compWord = wordArr[Math.floor(Math.random() * wordArr.length)];//random
+	      	//split chosen word
+	      	var currentWord = compWord.split('');
+	      	console.log("========================\n\n\n");
+
+	      	//Looping through the word	      	
+	      	for (var i = 0; i <= currentWord.length - 1; i++) {
+	      		// pushing blanks 
+	      		var gArr = blanksArr.push("_");
+
+	      	
+	      		//HYPHENS, COLONS, SPACES SHOULD BE PASSED
+	      		stackOv = currentWord.join("").replace(/[^- :'.,]/g, "_");
+	      		currentString = currentWord.join("");	
+	      	}
+	      	
+	      	fs.writeFile("blanks.txt", stackOv, (err) => {
+				if (err) throw err;
+				console.log("GUESS THIS MOVIE: \n\n\n" + stackOv);
+				displayProgress = new displayProgress();
+				displayProgress.checkGuess(); 
+	      	});      	
+	    });
+	}
+		 	
 
 	function tryAgain() {
 		inquirer.prompt([
@@ -154,26 +187,6 @@ var displayProgress = function (){
 				//recursion
 				DisplayProgress = new displayProgress();
 				DisplayProgress.checkGuess();
-			}
-		});
-	}
-	//call this function for wrong letter
-	function tryAgain2() {
-		inquirer.prompt([
-		  {
-		   type: "input",
-		   name: "letter",
-		   message: "Type a letter to guess again:"
-		  }
-		
-		]).then(function(userInput) {
-			var correctArray = [];
-			// console.log(userInput.letter);
-			letterTyped = userInput.letter;
-			// console.log(blanksTxt);
-			if (userInput.letter) {
-				console.log('try again!');
-				
 			}
 		});
 	}

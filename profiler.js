@@ -46,10 +46,14 @@ this.profiler = function() {
 }
 }
 //Initialize game
-var play = new Player();
-play.profiler();
+function newGame() {
+    var play = new Player();
+    play.profiler();
+    // console.log("Inside New Game")
+};
+ newGame();
 
-module.exports = Player;
+module.exports = newGame;
 
 
 

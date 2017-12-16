@@ -3,10 +3,11 @@ var inquirer = require('inquirer');
 var displayProgress = require('./checkGuess');
 
 var PlayFunc = function() {
-		var blanksArr = [];
-		var currentWord = [];
+		
 		
 	this.getData = function() {
+		var blanksArr = [];
+		var currentWord = [];
 		var stackOv = "";
 	    fs.readFile("words.txt", "utf8", function(error, data){
 	    	if (error) throw error;
