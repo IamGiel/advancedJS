@@ -1,6 +1,6 @@
 var fs = require('fs');
 var inquirer = require('inquirer');
-var PlayFunc = require('./PlayFunc');
+var PlayFunc = require('./playFunc');
 // var checkGuess = require('./checkGuess');
 
 

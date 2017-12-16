@@ -32,7 +32,7 @@ var PlayFunc = function() {
 	      	
 	      	fs.writeFile("blanks.txt", stackOv, (err) => {
 				if (err) throw err;
-				console.log("GUESS THIS MOVIE: " + stackOv);
+				console.log("GUESS THIS MOVIE: \n\n\n" + stackOv);
 				displayProgress = new displayProgress();
 				displayProgress.checkGuess(); 
 	      	});      	
