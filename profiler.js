@@ -4,10 +4,10 @@ var PlayFunc = require('./playFunc');
 // var checkGuess = require('./checkGuess');
 
 
-var Player = function(name) {
-	this.name = name;
-}
-var profiler = function() {
+function Player() {
+	// this.name = name;
+
+this.profiler = function() {
   inquirer.prompt([
     {
      type: "input",
@@ -44,8 +44,12 @@ var profiler = function() {
       });
 	});  
 }
+}
+//Initialize game
+var play = new Player();
+play.profiler();
 
-profiler();
+module.exports = Player;
 
 
 

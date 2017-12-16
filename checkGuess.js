@@ -114,8 +114,9 @@ var displayProgress = function (){
 						if (winner === 0) {
 							console.log("\n\n\n======================== ~~~~~~~~ YOU WIN!!! ~~~~~~~~ ========================");
 							//recursion
-							Player = new Player();
-							Player.profiler();
+							
+							var play = new Player();
+							play.profiler();
 						}
 					console.log("\n\n\n((((((((((((o))))))))))))((((((((((((o))))))))))))((((((((((((o))))))))))))\n");
 					//looping through history of letters typed
@@ -176,4 +177,5 @@ var displayProgress = function (){
 			}
 		});
 	}
+
 module.exports = displayProgress;
