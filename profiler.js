@@ -5,7 +5,7 @@ var PlayFunc = require('./playFunc');
 
 
 function Player() {
-	// this.name = name;
+    // this.name = name;
 
 this.profiler = function() {
   inquirer.prompt([
@@ -20,30 +20,31 @@ this.profiler = function() {
      message: "Get Ready for some Hang-Man Action!",
      choices: [
          {
-         	name: "GO, BREAK RECORDS!"
+            name: "GO, BREAK RECORDS!"
          }, 
          {
-         	name: "TRY LATER..."
+            name: "TRY LATER..."
          }
          ],
  }
-  ]).then(function(answer) {
-    var newPlayer = new Player(answer.name);
-    var userName = "\n\n\n========================\n" + answer.name + " is gonna " + answer.welcome;
-    console.log(userName);
-    if(answer.welcome == "GO, BREAK RECORDS!"){ 
-      PlayFunc = new PlayFunc();
-      PlayFunc.getData();
-    }
-    else {
-      //do nothing
-    }
-    fs.appendFile("log.txt", "Player Name: " + userName + "\n", function (err) {
-        if (err) throw err; 
-        // console.log(answer.name + " your name's in the system, lets see how you do!");
-      });
-	});  
-}
+    ]).then(function(answer) {
+      var newPlayer = new Player(answer.name);
+      var userName = "\n\n\n========================\n" + answer.name + " is gonna " + answer.welcome;
+      console.log(userName);
+      if(answer.welcome == "GO, BREAK RECORDS!"){ 
+        PlayFunc = new PlayFunc();
+        PlayFunc.getData();
+      
+      
+        fs.appendFile("log.txt", "Player Name: " + userName + "\n", function (err) {
+            if (err) throw err; 
+            // console.log(answer.name + " your name's in the system, lets see how you do!");
+          });
+        
+      }
+  
+    });
+ }
 }
 //Initialize game
 function newGame() {
@@ -54,6 +55,3 @@ function newGame() {
  newGame();
 
 module.exports = newGame;
-
-
-

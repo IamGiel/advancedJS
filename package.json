@@ -14,5 +14,13 @@
     "inquirer": "^4.0.1",
     "prompt": "^1.0.0"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IamGiel/advancedJS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/IamGiel/advancedJS/issues"
+  },
+  "homepage": "https://github.com/IamGiel/advancedJS#readme"
 }

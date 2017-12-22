@@ -1,14 +1,17 @@
 var fs = require('fs');
 var inquirer = require('inquirer');
 var displayProgress = require('./checkGuess');
+var blanksArr = [];
+var currentWord = [];
+var stackOv = "";
 
 var PlayFunc = function() {
 		
 		
 	this.getData = function() {
-		var blanksArr = [];
-		var currentWord = [];
-		var stackOv = "";
+		blanksArr = [];
+		currentWord = [];
+		stackOv = "";
 	    fs.readFile("words.txt", "utf8", function(error, data){
 	    	if (error) throw error;
 	    	dataType = data.toLowerCase();
@@ -25,15 +28,20 @@ var PlayFunc = function() {
 	      		// pushing blanks 
 	      		var gArr = blanksArr.push("_");
 
-	      	
 	      		//HYPHENS, COLONS, SPACES SHOULD BE PASSED
 	      		stackOv = currentWord.join("").replace(/[^- :'.,]/g, "_");
-	      		currentString = currentWord.join("");	
+	      		currentString = currentWord.join("");
 	      	}
+	      	//temporarily log answer, during debug
+	      	console.log(currentString, "\n\n\n");
+	      	fs.writeFile("currentString.txt", currentString, (err) => {
+	  	        if (err) throw err;
+	  	        
+	      	});  
 	      	
 	      	fs.writeFile("blanks.txt", stackOv, (err) => {
 				if (err) throw err;
-				console.log("GUESS THIS MOVIE: \n\n\n" + stackOv);
+				console.log("GUESS THIS MOVIE:",  stackOv);
 				displayProgress = new displayProgress();
 				displayProgress.checkGuess(); 
 	      	});      	

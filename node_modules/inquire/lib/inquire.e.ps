@@ -1,0 +1,238 @@
+module Prelude where
+import Prelude ()
+infixr 9 >>>
+infixr 9 <<<
+infixr 0 $
+infixl 0 #
+infixl 4 <$>
+infixl 4 <*>
+infixl 3 <|>
+infixl 1 >>=
+infixl 7 *
+infixl 7 /
+infixl 7 %
+infixl 6 -
+infixl 6 +
+infix 4 ==
+infix 4 /=
+infixl 4 <
+infixl 4 >
+infixl 4 <=
+infixl 4 >=
+infixl 10 &
+infixl 10 |
+infixl 10 ^
+infixl 8 !!
+infixr 2 ||
+infixr 3 &&
+infixr 5 ++
+foreign import (++) :: Prim.String -> Prim.String -> Prim.String
+foreign import boolNot :: Prim.Boolean -> Prim.Boolean
+foreign import boolOr :: Prim.Boolean -> Prim.Boolean -> Prim.Boolean
+foreign import boolAnd :: Prim.Boolean -> Prim.Boolean -> Prim.Boolean
+foreign import ($) :: forall a b. (a -> b) -> a -> b
+foreign import flip :: forall a b c. (a -> b -> c) -> b -> a -> c
+foreign import instance categoryArr :: Prelude.Category Prim.Function
+foreign import instance functorFromApplicative :: (Prelude.Applicative f) => Prelude.Functor f
+foreign import instance boolLikeBoolean :: Prelude.BoolLike Prim.Boolean
+module Math where
+import Prelude ()
+module Global where
+import Prelude ()
+module Data.String.Regex where
+import Prelude ()
+module Data.String where
+import Prelude ()
+module Data.Maybe where
+import Prelude ()
+data Maybe a = Nothing  | Just a
+foreign import maybe :: forall a b. b -> (a -> b) -> Data.Maybe.Maybe a -> b
+module Data.Eq where
+import Prelude ()
+module Data.Either where
+import Prelude ()
+module Data.BiTraversable where
+import Prelude ()
+module Data.BiFunctor where
+import Prelude ()
+module Data.BiFoldable where
+import Prelude ()
+module Data.Array.Unsafe where
+import Prelude ()
+module Data.Array where
+import Prelude ()
+infixr 6 :
+foreign import zipWith :: forall a b c. (a -> b -> c) -> [a] -> [b] -> [c]
+foreign import concat :: forall a. [a] -> [a] -> [a]
+foreign import (:) :: forall a. a -> [a] -> [a]
+module Data.Monoid where
+import Prelude ()
+infixr 6 <>
+module Data.Monoid.First where
+import Prelude ()
+module Data.Tuple where
+import Prelude ()
+data Tuple a b = Tuple a b
+foreign import zip :: forall a b. [a] -> [b] -> [Data.Tuple.Tuple a b]
+module Control.Monad.Trans where
+import Prelude ()
+module Control.Monad.Writer.Trans where
+import Prelude ()
+module Control.Monad.State.Trans where
+import Prelude ()
+module Control.Monad.Reader.Trans where
+import Prelude ()
+module Control.Monad.Identity where
+import Prelude ()
+module Control.Monad.Reader where
+import Prelude ()
+module Control.Monad.State where
+import Prelude ()
+module Control.Monad.Writer where
+import Prelude ()
+module Control.Monad.Error where
+import Prelude ()
+module Control.Monad.Error.Trans where
+import Prelude ()
+module Control.Monad.Eff where
+import Prelude ()
+module Control.Monad.Eff.Exception where
+import Prelude ()
+module Control.Monad.Eff.Random where
+import Prelude ()
+module Control.Monad.Eff.Unsafe where
+import Prelude ()
+module Control.Monad.ST where
+import Prelude ()
+module Debug.Trace where
+import Prelude ()
+module Test.QuickCheck where
+import Prelude ()
+module Control.Monad where
+import Prelude ()
+infixr 1 >=>
+infixr 1 <=<
+module Control.Monad.Maybe.Trans where
+import Prelude ()
+module Control.Monad.Error.Class where
+import Prelude ()
+module Control.Monad.Reader.Class where
+import Prelude ()
+module Control.Monad.State.Class where
+import Prelude ()
+module Control.Monad.Writer.Class where
+import Prelude ()
+module Text.Parsing.Parser where
+import Prelude ()
+module Text.Parsing.Parser.String where
+import Prelude ()
+module Text.Parsing.Parser.Combinators where
+import Prelude ()
+module Control.Applicative where
+import Prelude ()
+infixl 4 <*
+infixl 4 *>
+module Data.Foldable where
+import Prelude ()
+foreign import instance foldableArray :: Data.Foldable.Foldable Prim.Array
+module Data.Traversable where
+import Prelude ()
+module Network.Inquire where
+import Prelude ()
+data WrapOp  = NOBOOL  | NOT 
+data JuncOp  = AND  | OR 
+data Rel  = IEQ  | INE  | IGT  | IGE  | ILT  | ILE 
+data Inquire k v = True  | False  | Pred k Network.Inquire.Rel v | Junc (Network.Inquire.Inquire k v) Network.Inquire.JuncOp (Network.Inquire.Inquire k v) | Wrap Network.Inquire.WrapOp (Network.Inquire.Inquire k v)
+foreign import xor :: forall k v. Network.Inquire.Inquire k v -> Network.Inquire.Inquire k v -> Network.Inquire.Inquire k v
+foreign import equiv :: forall k v. Network.Inquire.Inquire k v -> Network.Inquire.Inquire k v -> Network.Inquire.Inquire k v
+foreign import implies :: forall k v. Network.Inquire.Inquire k v -> Network.Inquire.Inquire k v -> Network.Inquire.Inquire k v
+foreign import neg :: forall k v. Network.Inquire.Inquire k v -> Network.Inquire.Inquire k v
+foreign import or :: forall k v. Network.Inquire.Inquire k v -> Network.Inquire.Inquire k v -> Network.Inquire.Inquire k v
+foreign import and :: forall k v. Network.Inquire.Inquire k v -> Network.Inquire.Inquire k v -> Network.Inquire.Inquire k v
+foreign import leObj :: forall k v. { val :: v, key :: k } -> Network.Inquire.Inquire k v
+foreign import ltObj :: forall k v. { val :: v, key :: k } -> Network.Inquire.Inquire k v
+foreign import geObj :: forall k v. { val :: v, key :: k } -> Network.Inquire.Inquire k v
+foreign import gtObj :: forall k v. { val :: v, key :: k } -> Network.Inquire.Inquire k v
+foreign import neObj :: forall k v. { val :: v, key :: k } -> Network.Inquire.Inquire k v
+foreign import eqObj :: forall k v. { val :: v, key :: k } -> Network.Inquire.Inquire k v
+foreign import le :: forall k v. k -> v -> Network.Inquire.Inquire k v
+foreign import lt :: forall k v. k -> v -> Network.Inquire.Inquire k v
+foreign import ge :: forall k v. k -> v -> Network.Inquire.Inquire k v
+foreign import gt :: forall k v. k -> v -> Network.Inquire.Inquire k v
+foreign import ne :: forall k v. k -> v -> Network.Inquire.Inquire k v
+foreign import eq :: forall k v. k -> v -> Network.Inquire.Inquire k v
+foreign import unsafeGenerate :: forall k v. Network.Inquire.Inquire k v -> Prim.String
+foreign import generate :: forall k v. (Prelude.Show k, Prelude.Show v) => Network.Inquire.Inquire k v -> Prim.String
+foreign import instance eqRel :: Prelude.Eq Network.Inquire.Rel
+foreign import instance eqJuncOp :: Prelude.Eq Network.Inquire.JuncOp
+foreign import instance eqWrapOp :: Prelude.Eq Network.Inquire.WrapOp
+foreign import instance eqInquire :: (Prelude.Eq k, Prelude.Eq v) => Prelude.Eq (Network.Inquire.Inquire k v)
+foreign import instance showRel :: Prelude.Show Network.Inquire.Rel
+foreign import instance showJuncOp :: Prelude.Show Network.Inquire.JuncOp
+foreign import instance showWrapOp :: Prelude.Show Network.Inquire.WrapOp
+foreign import instance showInquire :: (Prelude.Show k, Prelude.Show v) => Prelude.Show (Network.Inquire.Inquire k v)
+foreign import instance functorInquire :: Prelude.Functor (Network.Inquire.Inquire k)
+foreign import instance monoidInquire :: Data.Monoid.Monoid (Network.Inquire.Inquire k v)
+foreign import instance biFunctorInquire :: Data.BiFunctor.BiFunctor Network.Inquire.Inquire
+foreign import instance foldableInquire :: Data.Foldable.Foldable (Network.Inquire.Inquire k)
+foreign import instance biFoldableInquire :: Data.BiFoldable.BiFoldable Network.Inquire.Inquire
+foreign import instance traversableInquire :: Data.Traversable.Traversable (Network.Inquire.Inquire k)
+foreign import instance bitraversableInquire :: Data.BiTraversable.BiTraversable Network.Inquire.Inquire
+foreign import instance boolLikeInquire :: Prelude.BoolLike (Network.Inquire.Inquire k v)
+module Network.Inquire.Zipper where
+import Prelude ()
+data InquireZ k v = Zip { context :: [Network.Inquire.Zipper.Context k v], hole :: Network.Inquire.Inquire k v }
+foreign import modify :: forall k v. (Network.Inquire.Inquire k v -> Network.Inquire.Inquire k v) -> Network.Inquire.Zipper.InquireZ k v -> Network.Inquire.Zipper.InquireZ k v
+foreign import query :: forall a k v. (Network.Inquire.Inquire k v -> a) -> Network.Inquire.Zipper.InquireZ k v -> a
+foreign import getHole :: forall k v. Network.Inquire.Zipper.InquireZ k v -> Network.Inquire.Inquire k v
+foreign import zipRightmost :: forall k v. Network.Inquire.Zipper.InquireZ k v -> Network.Inquire.Zipper.InquireZ k v
+foreign import zipLeftmost :: forall k v. Network.Inquire.Zipper.InquireZ k v -> Network.Inquire.Zipper.InquireZ k v
+foreign import zipUpmost :: forall k v. Network.Inquire.Zipper.InquireZ k v -> Network.Inquire.Zipper.InquireZ k v
+foreign import zipMost :: forall k v. Network.Inquire.Zipper.Movement k v -> Network.Inquire.Zipper.InquireZ k v -> Network.Inquire.Zipper.InquireZ k v
+foreign import zipUp :: forall k v. Network.Inquire.Zipper.Movement k v
+foreign import zipDown :: forall k v. Network.Inquire.Zipper.Movement k v
+foreign import zipRight :: forall k v. Network.Inquire.Zipper.Movement k v
+foreign import zipLeft :: forall k v. Network.Inquire.Zipper.Movement k v
+foreign import fromInquireZ :: forall k v. Network.Inquire.Zipper.InquireZ k v -> Network.Inquire.Inquire k v
+foreign import toInquireZ :: forall k v. Network.Inquire.Inquire k v -> Network.Inquire.Zipper.InquireZ k v
+module Network.Inquire.Combinators where
+import Prelude ()
+foreign import unsafeFromObj :: forall a k v. {  | a } -> Network.Inquire.Inquire k v
+foreign import unsafeReplaceValByVal :: forall k v. v -> v -> Network.Inquire.Inquire k v -> Network.Inquire.Inquire k v
+foreign import unsafeReplaceValByKey :: forall k v. v -> k -> Network.Inquire.Inquire k v -> Network.Inquire.Inquire k v
+foreign import unsafeRemoveAll :: forall k v. v -> Network.Inquire.Inquire k v -> Network.Inquire.Inquire k v -> Network.Inquire.Inquire k v
+foreign import unsafeRemove :: forall k v. v -> Network.Inquire.Inquire k v -> Network.Inquire.Inquire k v -> Network.Inquire.Inquire k v
+foreign import unsafeIsInquire :: forall a. a -> Prim.Boolean
+foreign import unsafeFindByVal :: forall k v. v -> Network.Inquire.Inquire k v -> Data.Maybe.Maybe (Network.Inquire.Inquire k v)
+foreign import unsafeFindByKey :: forall k v. v -> Network.Inquire.Inquire k v -> Data.Maybe.Maybe (Network.Inquire.Inquire k v)
+foreign import idempotent :: forall k v. (Prelude.Eq k, Prelude.Eq v) => Network.Inquire.Inquire k v -> Network.Inquire.Inquire k v
+foreign import codistribute :: forall k v. Network.Inquire.Inquire k v -> Network.Inquire.Inquire k v
+foreign import distribute :: forall k v. Network.Inquire.Inquire k v -> Network.Inquire.Inquire k v
+foreign import commute :: forall k v. Network.Inquire.Inquire k v -> Network.Inquire.Inquire k v
+foreign import assocRight :: forall k v. Network.Inquire.Inquire k v -> Network.Inquire.Inquire k v
+foreign import assocLeft :: forall k v. Network.Inquire.Inquire k v -> Network.Inquire.Inquire k v
+foreign import associate :: forall k v. Network.Inquire.Inquire k v -> Network.Inquire.Inquire k v
+foreign import absorb :: forall k v. (Prelude.Eq k, Prelude.Eq v) => Network.Inquire.Inquire k v -> Network.Inquire.Inquire k v
+foreign import map :: forall a b f. (Prelude.Functor f) => (a -> b) -> f a -> f b
+foreign import bimap :: forall a b c d f. (Data.BiFunctor.BiFunctor f) => (a -> c) -> (b -> d) -> f a b -> f c d
+foreign import replaceValByVal :: forall k v. (Prelude.Eq v) => v -> v -> Network.Inquire.Inquire k v -> Network.Inquire.Inquire k v
+foreign import replaceValByKey :: forall k v. (Prelude.Eq k) => v -> k -> Network.Inquire.Inquire k v -> Network.Inquire.Inquire k v
+foreign import removeAll :: forall k v. (Prelude.Eq k, Prelude.Eq v) => Network.Inquire.Inquire k v -> Network.Inquire.Inquire k v -> Network.Inquire.Inquire k v
+foreign import remove :: forall k v. (Prelude.Eq k, Prelude.Eq v) => Network.Inquire.Inquire k v -> Network.Inquire.Inquire k v -> Network.Inquire.Inquire k v
+foreign import findByKey :: forall k v. (Prelude.Eq k) => k -> Network.Inquire.Inquire k v -> Data.Maybe.Maybe (Network.Inquire.Inquire k v)
+foreign import findByVal :: forall k v. (Prelude.Eq v) => v -> Network.Inquire.Inquire k v -> Data.Maybe.Maybe (Network.Inquire.Inquire k v)
+foreign import filterByKey :: forall k v. (k -> Prim.Boolean) -> Network.Inquire.Inquire k v -> Network.Inquire.Inquire k v
+foreign import filterByVal :: forall k v. (v -> Prim.Boolean) -> Network.Inquire.Inquire k v -> Network.Inquire.Inquire k v
+foreign import fromArrayObj :: forall k v. [{ val :: v, key :: k }] -> Network.Inquire.Inquire k v
+foreign import fromArrayPair :: forall t12046. [[t12046]] -> Network.Inquire.Inquire t12046 t12046
+foreign import fromArray :: forall k v. [Network.Inquire.Inquire k v] -> Network.Inquire.Inquire k v
+foreign import toArrayObj :: forall k v. Network.Inquire.Inquire k v -> [{ val :: v, key :: k }]
+foreign import toArrayPair :: forall t12005. Network.Inquire.Inquire t12005 t12005 -> [[t12005]]
+foreign import toTuple :: forall k v. Network.Inquire.Inquire k v -> [Data.Tuple.Tuple k v]
+foreign import vals :: forall k v. Network.Inquire.Inquire k v -> [v]
+foreign import keys :: forall k v. Network.Inquire.Inquire k v -> [k]
+foreign import toObj :: forall k v. Network.Inquire.Inquire k v -> { vals :: [v], keys :: [k] }
+module Text.Parsing.Parser.Expr where
+import Prelude ()
+module Network.Inquire.Parser where
+import Prelude ()
