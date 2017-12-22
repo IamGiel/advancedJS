@@ -33,7 +33,7 @@ var PlayFunc = function() {
 	      		currentString = currentWord.join("");
 	      	}
 	      	//temporarily log answer, during debug
-	      	console.log(currentString, "\n\n\n");
+	      	// console.log(currentString, "\n\n\n");
 	      	fs.writeFile("currentString.txt", currentString, (err) => {
 	  	        if (err) throw err;
 	  	        
