@@ -53,13 +53,13 @@ var displayProgress = function (){
                         }
                         
                     }   //======= outside the for-loop =======//
-                    whatever();
+                    restartAPP();
                 });
             }        
         }); 
     }
 }     
-                function whatever(){
+                function restartAPP(){
                     //EXIT GAME IF USER-GUESS=0
                     if(guessesLeft <= 0){
                         console.log('\n\n\n==========\nSORRY, TRY AGAIN IN THREE DAYS, TAKE THIS TIME TO REFLECT ON WHAT YOU DID WRONG AND THINK :P\n==========\n\n\n');
