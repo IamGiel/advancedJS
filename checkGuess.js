@@ -133,6 +133,28 @@ var displayProgress = function (){
                             // restart();
                         }
                 }
+                //========
+                function tryAgain() {
+                    inquirer.prompt([
+                      {
+                       type: "input",
+                       name: "letter",
+                       message: "NEED TO TYPE LETTER, or press 'ENTER' to END GAME"
+                      }
+                    
+                    ]).then(function(userInput) {
+                        var correctArray = [];
+                        // console.log(userInput.letter);
+                        letterTyped = userInput.letter;
+                        if (!userInput.letter) {
+                            console.log('goodbye'); 
+                        } else {
+                            //recursion
+                            DisplayProgress = new displayProgress();
+                            DisplayProgress.checkGuess();
+                        }
+                    });
+                }
           
         
     
